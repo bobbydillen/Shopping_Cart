@@ -4,8 +4,9 @@ import { createContext, useEffect, useState } from "react";
 export const ShoppingCartContext = createContext(null);
 
 function ShoppingCartProvider({children}){
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [ listOfProducts, setlistOfProducts] = useState([]);
+    const [productDetails, setProductDetails] = useState(null);
 
     async function fetchListofProducts() {
         const apiResponse = await fetch('https://dummyjson.com/products');
@@ -13,6 +14,7 @@ function ShoppingCartProvider({children}){
         
         if(result && result?.products){
             setlistOfProducts(result?.products);
+            setLoading(false);
         }
     }
 
@@ -23,7 +25,7 @@ function ShoppingCartProvider({children}){
         fetchListofProducts()
     },[]);
     return(
-        <ShoppingCartContext.Provider value={{listOfProducts}}>
+        <ShoppingCartContext.Provider value={{listOfProducts,loading,setLoading,productDetails, setProductDetails}}>
             {children}
             </ShoppingCartContext.Provider>
     )
