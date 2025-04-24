@@ -1,11 +1,12 @@
 import { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ShoppingCartContext } from "../../context";
 
 function ProductDetailsPage() {
 
     const {id} = useParams();
-    const {productDetails, setProductDetails,loading, setLoading} = useContext(ShoppingCartContext);
+    const navigate = useNavigate();
+    const {productDetails, setProductDetails,loading, setLoading, handleAddToCart} = useContext(ShoppingCartContext);
 
     async function  fetchProductDetails() {
          const apiResponse = await fetch(`https://dummyjson.com/products/${id}`);
@@ -28,7 +29,9 @@ function ProductDetailsPage() {
 
     },[id])
 
-    console.log(productDetails);
+    //console.log(productDetails);
+
+    
 
     if(loading) return <h1>Fetching Details Please wait</h1>
     
@@ -78,6 +81,10 @@ function ProductDetailsPage() {
 
                         <p className="text-xl font-bold">₹{productDetails?.price}</p>
 
+                    </div>
+
+                    <div>
+                        <button onClick={()=>handleAddToCart(productDetails)} className="mt-5 min-w-[200px] px-4 py-3 border border-[#333] bg-transparent text-sm font-semibold rounded">Add to Cart</button>
                     </div>
 
                 </div>
