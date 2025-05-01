@@ -26,7 +26,9 @@ function CartPage() {
               </h3>
               <ul className="text-gray-700 mt-4 ">
                 <p className="flex flex-wrap gap-4 text-sm font-bold ">
-                    Total <span></span>
+                    Total <span>
+                      ${cartItem.reduce((acc,curr)=> acc + curr.totalPrice,0).toFixed(2)}
+                    </span>
                 </p>
               </ul>
               <div className="mt-4 flex gap-2 space-y-2">

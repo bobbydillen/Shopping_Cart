@@ -32,7 +32,7 @@ function CartTile({ singleCartItem }) {
           <div className="mt-3 flex items-center gap-2">
             <button
               onClick={() => handleRemoveFromCart(singleCartItem, false)}
-              className="text-sm w-8 h-8 flex items-center justify-center bg-black text-white font-bold rounded"
+              className="disabled: opacity-65 text-sm w-8 h-8 flex items-center justify-center bg-black text-white font-bold rounded"
               disabled={singleCartItem.quantity <= 1}
             >
               -
