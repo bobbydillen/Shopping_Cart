@@ -2,7 +2,7 @@ import { Fragment, useContext } from "react";
 import { ShoppingCartContext } from "../../context";
 
 function CartTile({ singleCartItem }) {
-  const { handleRemoveFromCart, handleUpdateCartItem } = useContext(ShoppingCartContext);
+  const { handleRemoveFromCart, handleUpdateCartItem, handleAddToCart } = useContext(ShoppingCartContext);
 
   return (
     <Fragment>
@@ -41,6 +41,7 @@ function CartTile({ singleCartItem }) {
             <button
               onClick={() => handleUpdateCartItem(singleCartItem)}
               className="text-sm w-8 h-8 flex items-center justify-center bg-black text-white font-bold rounded"
+              
             >
               +
             </button>
